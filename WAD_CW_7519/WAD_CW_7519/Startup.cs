@@ -1,4 +1,5 @@
 using DAL_7519.DBO;
+using DAL_7519.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,8 +29,11 @@ namespace WAD_CW_7519
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+                
             services.AddControllers();
+
+            services.AddScoped<IRepository<Category>, CategoryRepository>();
+            services.AddScoped<IRepository<Product>, ProductRepository>();
 
             services.AddDbContext<StoreDbcontext>(option => option.UseSqlServer(Configuration.GetConnectionString("StoreDb")));
             services.AddSwaggerGen(c =>

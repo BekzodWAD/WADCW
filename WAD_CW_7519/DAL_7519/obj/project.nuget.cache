@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gkCdwKytaBZkDMsUYrJ2OQ4G83NaaaHNFHuanfReMcJCl9ZpQJyQAp5fWPBEvd5EB3s+73V+CJmmf8OXXHddlQ==",
+  "dgSpecHash": "P24ww1M18W8sv+RXBCqjc9BZAinXLT9/HzrNx3GO81DtmUY3HY14fu3mdgx+E9jFtk4lK8PbY2L6eN32gILTEw==",
   "success": true,
-  "projectFilePath": "C:\\WIUT\\7519\\wad_cw_7519\\WAD_CW_7519\\DAL_7519\\DAL_7519.csproj",
+  "projectFilePath": "c:\\WIUT\\7519\\wad_cw_7519\\WAD_CW_7519\\DAL_7519\\DAL_7519.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\akhad\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\akhad\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",

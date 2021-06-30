@@ -154,5 +154,5 @@ c:\WIUT\7519\wad_cw_7519\WAD_CW_7519\WAD_CW_7519\bin\Debug\net5.0\runtimes\win-x
 c:\WIUT\7519\wad_cw_7519\WAD_CW_7519\WAD_CW_7519\bin\Debug\net5.0\runtimes\win-x86\native\e_sqlite3.dll
 c:\WIUT\7519\wad_cw_7519\WAD_CW_7519\WAD_CW_7519\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
 c:\WIUT\7519\wad_cw_7519\WAD_CW_7519\WAD_CW_7519\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
-c:\WIUT\7519\wad_cw_7519\WAD_CW_7519\WAD_CW_7519\bin\Debug\net5.0\DAL_7519.dll
-c:\WIUT\7519\wad_cw_7519\WAD_CW_7519\WAD_CW_7519\bin\Debug\net5.0\DAL_7519.pdb
+C:\WIUT\7519\wad_cw_7519\WAD_CW_7519\WAD_CW_7519\bin\Debug\net5.0\DAL_7519.dll
+C:\WIUT\7519\wad_cw_7519\WAD_CW_7519\WAD_CW_7519\bin\Debug\net5.0\DAL_7519.pdb
