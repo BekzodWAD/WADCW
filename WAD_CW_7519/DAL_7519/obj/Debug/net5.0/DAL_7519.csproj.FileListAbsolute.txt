@@ -1,0 +1,15 @@
+C:\WIUT\7519\wad_cw_7519\WAD_CW_7519\DAL_7519\bin\Debug\net5.0\DAL_7519.deps.json
+C:\WIUT\7519\wad_cw_7519\WAD_CW_7519\DAL_7519\bin\Debug\net5.0\DAL_7519.runtimeconfig.json
+C:\WIUT\7519\wad_cw_7519\WAD_CW_7519\DAL_7519\bin\Debug\net5.0\DAL_7519.runtimeconfig.dev.json
+C:\WIUT\7519\wad_cw_7519\WAD_CW_7519\DAL_7519\bin\Debug\net5.0\DAL_7519.dll
+C:\WIUT\7519\wad_cw_7519\WAD_CW_7519\DAL_7519\bin\Debug\net5.0\ref\DAL_7519.dll
+C:\WIUT\7519\wad_cw_7519\WAD_CW_7519\DAL_7519\bin\Debug\net5.0\DAL_7519.pdb
+C:\WIUT\7519\wad_cw_7519\WAD_CW_7519\DAL_7519\obj\Debug\net5.0\DAL_7519.csproj.AssemblyReference.cache
+C:\WIUT\7519\wad_cw_7519\WAD_CW_7519\DAL_7519\obj\Debug\net5.0\DAL_7519.GeneratedMSBuildEditorConfig.editorconfig
+C:\WIUT\7519\wad_cw_7519\WAD_CW_7519\DAL_7519\obj\Debug\net5.0\DAL_7519.AssemblyInfoInputs.cache
+C:\WIUT\7519\wad_cw_7519\WAD_CW_7519\DAL_7519\obj\Debug\net5.0\DAL_7519.AssemblyInfo.cs
+C:\WIUT\7519\wad_cw_7519\WAD_CW_7519\DAL_7519\obj\Debug\net5.0\DAL_7519.csproj.CoreCompileInputs.cache
+C:\WIUT\7519\wad_cw_7519\WAD_CW_7519\DAL_7519\obj\Debug\net5.0\DAL_7519.dll
+C:\WIUT\7519\wad_cw_7519\WAD_CW_7519\DAL_7519\obj\Debug\net5.0\ref\DAL_7519.dll
+C:\WIUT\7519\wad_cw_7519\WAD_CW_7519\DAL_7519\obj\Debug\net5.0\DAL_7519.pdb
+C:\WIUT\7519\wad_cw_7519\WAD_CW_7519\DAL_7519\obj\Debug\net5.0\DAL_7519.genruntimeconfig.cache
