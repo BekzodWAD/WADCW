@@ -1,10 +1,15 @@
 import React from 'react'
 import { Formik, Form, Field } from 'formik';
+import { PostData } from '../utils/ajax';
 
 const CategoryForm = () => {
     
     const handleSubmit = values=>{
-        console.log(values);
+        try{
+            PostData("/api/Categories", values)
+        }catch(e){
+            console.error(e);
+        }
     }
     
     return (

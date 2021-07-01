@@ -36,6 +36,18 @@ namespace WAD_CW_7519
             services.AddScoped<IRepository<Product>, ProductRepository>();
 
             services.AddDbContext<StoreDbcontext>(option => option.UseSqlServer(Configuration.GetConnectionString("StoreDb")));
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(name: "AllowAllOrigins",
+                    builder =>
+                    {
+                        builder.WithOrigins("*")
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WAD_CW_7519", Version = "v1" });
@@ -51,6 +63,8 @@ namespace WAD_CW_7519
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "WAD_CW_7519 v1"));
             }
+
+            app.UseCors("AllowAllOrigins");
 
             app.UseHttpsRedirection();
 

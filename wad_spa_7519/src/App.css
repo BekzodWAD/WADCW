@@ -11,7 +11,7 @@
   min-width: 268px;
 }
 
-.form-group input.form-control{
+.form-group input.form-control, textarea.form-control{ 
   min-width: 250px;
 }
 .btn{
