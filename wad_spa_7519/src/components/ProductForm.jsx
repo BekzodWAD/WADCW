@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Formik, Form, Field } from 'formik';
 import { GetData, PostData } from '../utils/ajax';
 
-const ProductForm = () => {
+const ProductForm = ({ history }) => {
 
     const [categories, setCategories] = useState([]);
 
@@ -15,7 +15,7 @@ const ProductForm = () => {
 
     const handleSubmit = values => {
         try {
-            PostData("/api/Products", values)
+            PostData("/api/Products", values, history.goBack)
         } catch (e) {
             console.error(e);
         }
