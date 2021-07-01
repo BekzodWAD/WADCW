@@ -11,3 +11,7 @@ export const PostData = async (url, data={})=>{
     return res.json();
 }
 
+export const GetData = async url=>{
+    return await fetch(`${DEAFULT_URL}${url}`).then(response => response.json());
+}
+

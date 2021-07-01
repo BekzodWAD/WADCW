@@ -15,17 +15,45 @@
   min-width: 250px;
 }
 .btn{
-  min-width: 100px;
+  min-width: 50px;
   padding: 9px;
   margin-top: 3px;
   font-weight: bold;
   cursor: pointer;
   border: none;
+  outline: none;
+  box-sizing: border-box;
+  border-radius: 4px;
 }
 .btn-primary{
   background-color: #007bff;
-  outline: none;
-  box-sizing: border-box;
   color: aliceblue;
-  border-radius: 4px;
+}
+
+.btn-danger{
+  background-color: #dc3545;
+  color: #fff
+}
+
+table{
+  width: 100%;
+}
+
+thead th{
+    min-width: 250px;
+}
+tbody td{
+  text-align: center;
+}
+
+table{
+  border-collapse: collapse;
+}
+
+tr, thead{
+  border-bottom: 1px solid #999;
+}
+
+.ml-3{
+  margin-left: 3px;
 }
