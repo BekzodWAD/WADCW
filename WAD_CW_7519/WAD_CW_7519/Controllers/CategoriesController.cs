@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DAL_7519.DBO;
+using DAL_7519.Repositories;
 
 namespace WAD_CW_7519.Controllers
 {
@@ -13,9 +14,9 @@ namespace WAD_CW_7519.Controllers
     [ApiController]
     public class CategoriesController : ControllerBase
     {
-        private readonly StoreDbcontext _context;
+        private readonly IRepository<Category> _context;
 
-        public CategoriesController(StoreDbcontext context)
+        public CategoriesController(IRepository<Category> context)
         {
             _context = context;
         }
@@ -24,14 +25,14 @@ namespace WAD_CW_7519.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Category>>> GetCategories()
         {
-            return await _context.Categories.ToListAsync();
+            return await _context.GetAllAsync();
         }
 
         // GET: api/Categories/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Category>> GetCategory(int id)
         {
-            var category = await _context.Categories.FindAsync(id);
+            var category = await _context.FindAsync(id);
 
             if (category == null)
             {
@@ -51,23 +52,10 @@ namespace WAD_CW_7519.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(category).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!CategoryExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            if (_context.Exists(id))
+                await _context.UpdateAsync(category);
+            else
+                return NotFound();
 
             return NoContent();
         }
@@ -77,8 +65,7 @@ namespace WAD_CW_7519.Controllers
         [HttpPost]
         public async Task<ActionResult<Category>> PostCategory(Category category)
         {
-            _context.Categories.Add(category);
-            await _context.SaveChangesAsync();
+            await _context.CreateAsync(category);
 
             return CreatedAtAction("GetCategory", new { id = category.CategoryId }, category);
         }
@@ -87,21 +74,19 @@ namespace WAD_CW_7519.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCategory(int id)
         {
-            var category = await _context.Categories.FindAsync(id);
-            if (category == null)
+            if (!_context.Exists(id))
             {
                 return NotFound();
             }
 
-            _context.Categories.Remove(category);
-            await _context.SaveChangesAsync();
+            await _context.DeleteAsync(id);
 
             return NoContent();
         }
 
         private bool CategoryExists(int id)
         {
-            return _context.Categories.Any(e => e.CategoryId == id);
+            return _context.Exists(id);
         }
     }
 }

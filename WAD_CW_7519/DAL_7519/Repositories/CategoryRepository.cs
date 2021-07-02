@@ -1,4 +1,5 @@
 ﻿using DAL_7519.DBO;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,35 +10,52 @@ namespace DAL_7519.Repositories
 {
     public class CategoryRepository : IRepository<Category>
     {
-        
-        public Task CreateAsync(Category entity)
+        private readonly StoreDbcontext _context;
+        public CategoryRepository(StoreDbcontext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+        public async Task CreateAsync(Category category)
+        {
+            _context.Categories.Add(category);
+            await _context.SaveChangesAsync();
         }
 
-        public Task DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var category = await _context.Categories.FindAsync(id);
+            _context.Categories.Remove(category);
+            await _context.SaveChangesAsync();
         }
 
         public bool Exists(int id)
         {
-            throw new NotImplementedException();
+            return _context.Categories.Any(e => e.CategoryId == id);
         }
 
-        public Task<Category> FindAsync(int id)
+        public async Task<Category> FindAsync(int id)
         {
-            throw new NotImplementedException();
+            return await _context.Categories.FindAsync(id);
         }
 
-        public Task<List<Category>> GetAllAsync()
+        public async Task<List<Category>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Categories.ToListAsync();
         }
 
-        public Task UpdateAsync(Category entity)
+        public async Task UpdateAsync(Category category)
         {
-            throw new NotImplementedException();
+            _context.Entry(category).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                
+               throw;
+            }
         }
     }
 }

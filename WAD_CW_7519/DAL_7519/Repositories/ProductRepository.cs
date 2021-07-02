@@ -1,4 +1,5 @@
 ﻿using DAL_7519.DBO;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,34 +10,54 @@ namespace DAL_7519.Repositories
 {
     public class ProductRepository : IRepository<Product>
     {
-        public Task CreateAsync(Product entity)
+        private readonly StoreDbcontext _context;
+        public ProductRepository(StoreDbcontext context)
         {
-            throw new NotImplementedException();
+            _context = context;
+        }
+        public async Task CreateAsync(Product entity)
+        {
+            _context.Products.Add(entity);
+            await _context.SaveChangesAsync();
         }
 
-        public Task DeleteAsync(int id)
+        public async Task DeleteAsync(int id)
         {
-            throw new NotImplementedException();
+            var product = await _context.Products.FindAsync(id);
+
+            _context.Products.Remove(product);
+            await _context.SaveChangesAsync();
         }
 
         public bool Exists(int id)
         {
-            throw new NotImplementedException();
+            return _context.Products.Any(e => e.ProductId == id);
         }
 
-        public Task<Product> FindAsync(int id)
+        public async Task<Product> FindAsync(int id)
         {
-            throw new NotImplementedException();
+            var product = await _context.Products.FindAsync(id);
+
+            return product;
         }
 
-        public Task<List<Product>> GetAllAsync()
+        public async Task<List<Product>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await _context.Products.Include(p => p.Category).ToListAsync();
         }
 
-        public Task UpdateAsync(Product entity)
+        public async Task UpdateAsync(Product product)
         {
-            throw new NotImplementedException();
+            _context.Entry(product).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
+            }
         }
     }
 }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DAL_7519.DBO;
+using DAL_7519.Repositories;
 
 namespace WAD_CW_7519.Controllers
 {
@@ -13,9 +14,9 @@ namespace WAD_CW_7519.Controllers
     [ApiController]
     public class ProductsController : ControllerBase
     {
-        private readonly StoreDbcontext _context;
+        private readonly IRepository<Product> _context;
 
-        public ProductsController(StoreDbcontext context)
+        public ProductsController(IRepository<Product> context)
         {
             _context = context;
         }
@@ -24,21 +25,16 @@ namespace WAD_CW_7519.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
-            return await _context.Products.Include(p=>p.Category).ToListAsync();
+            return await _context.GetAllAsync();
         }
 
         // GET: api/Products/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
-            var product = await _context.Products.FindAsync(id);
-
-            if (product == null)
-            {
-                return NotFound();
-            }
-
-            return product;
+            if(_context.Exists(id))
+                return await _context.FindAsync(id);
+            else return NotFound();
         }
 
         // PUT: api/Products/5
@@ -51,23 +47,9 @@ namespace WAD_CW_7519.Controllers
                 return BadRequest();
             }
 
-            _context.Entry(product).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ProductExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+            if (_context.Exists(id))
+                await _context.UpdateAsync(product);
+            else return NotFound();
 
             return NoContent();
         }
@@ -77,8 +59,7 @@ namespace WAD_CW_7519.Controllers
         [HttpPost]
         public async Task<ActionResult<Product>> PostProduct(Product product)
         {
-            _context.Products.Add(product);
-            await _context.SaveChangesAsync();
+            await _context.CreateAsync(product);
 
             return CreatedAtAction("GetProduct", new { id = product.ProductId }, product);
         }
@@ -87,21 +68,14 @@ namespace WAD_CW_7519.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduct(int id)
         {
-            var product = await _context.Products.FindAsync(id);
-            if (product == null)
-            {
-                return NotFound();
-            }
-
-            _context.Products.Remove(product);
-            await _context.SaveChangesAsync();
+            await _context.DeleteAsync(id);
 
             return NoContent();
         }
 
         private bool ProductExists(int id)
         {
-            return _context.Products.Any(e => e.ProductId == id);
+            return _context.Exists(id);
         }
     }
 }
