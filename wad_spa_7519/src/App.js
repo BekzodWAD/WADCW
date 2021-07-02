@@ -11,7 +11,7 @@ function App() {
       <Route exact path="/" component={ProductList} />
       <Route excat path="/categories/create" component={CategoryForm} />
       <Route exact path="/products/create" component={ProductForm}/>
-      <Route exact path="/products/edit/:productId" render={()=><div>Hi Edit form</div>}/>
+      <Route exact path="/products/edit/:productId" component={ProductForm}/>
 
     </div>
   );

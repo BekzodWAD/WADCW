@@ -35,3 +35,19 @@ export const DeleteData = async (url, callBack)=>{
     return res.json();
 }
 
+export const PutData = async (url, data={}, callBack)=>{
+    const res = await fetch(`${DEAFULT_URL}${url}`, {
+        method: "put",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }).then(res => {
+        if (callBack) {
+            callBack();
+        }
+        return res;
+    })
+
+    return res.json();
+}
