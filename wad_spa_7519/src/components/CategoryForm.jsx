@@ -2,11 +2,11 @@ import React from 'react'
 import { Formik, Form, Field } from 'formik';
 import { PostData } from '../utils/ajax';
 
-const CategoryForm = () => {
+const CategoryForm = ({ history }) => {
     
     const handleSubmit = values=>{
         try{
-            PostData("/api/Categories", values)
+            PostData("/api/Categories", values, history.goBack)
         }catch(e){
             console.error(e);
         }
